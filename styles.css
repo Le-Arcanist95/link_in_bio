@@ -14,6 +14,14 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(14, 14, 14, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.profile-picture {
+    border-radius: 25%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
 }
 
 h1 {
@@ -32,8 +40,37 @@ li {
 a {
     text-decoration: none;
     color: #007bff;
+    transition: color 0.3s ease;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+.social-media {
+    margin-top: 20px;
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #777;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
