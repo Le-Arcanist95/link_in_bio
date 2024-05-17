@@ -189,4 +189,9 @@ footer {
     .toggle-container button {
         padding: 8px 16px;
     }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+    }
 }
