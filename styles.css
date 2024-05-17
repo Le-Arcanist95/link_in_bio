@@ -10,7 +10,9 @@ body {
     justify-content: space-between;
     background: url('https://source.unsplash.com/random/1600x900?nature') no-repeat center center fixed;
     background-size: cover;
+    animation: backgroundScroll 60s linear infinite;
     transition: background-color 0.5s ease;
+    position: relative;
 }
 
 .dark-mode {
@@ -99,6 +101,11 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
+}
+
+nav a.active {
+    font-weight: bold;
+    border-bottom: #0056b3;
 }
 
 .social-media {
@@ -228,6 +235,18 @@ footer {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes backgroundScroll {
+    0% {
+        background-position: center top;
+    }
+    50% {
+        background-position: center bottom;
+    }
+    100% {
+        background-position: center top;
     }
 }
 
