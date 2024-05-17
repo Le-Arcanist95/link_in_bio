@@ -26,7 +26,7 @@ document.querySelectorAll('a[data-scroll]').forEach(anchor => {
 // Back to Top Button
 const backToTopButton = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
+    if (window.scrollY > 300) {
         backToTopButton.style.display = 'block';
     } else {
         backToTopButton.style.display = 'none';
@@ -38,29 +38,50 @@ backToTopButton.addEventListener('click', () => {
 });
 
 // Form Validation and Submission
-const form = document.getElementById('contactForm');
-const formFeedback = document.getElementById('formFeedback');
-const loadingSpinner = document.getElementById('loadingSpinner');
+document.getElementById('contactForm').addEventListener('input', function(event) {
+    const name = document.getElementsByName('name')[0];
+    const email = document.getElementsByName('email')[0];
+    const message = document.getElementsByName('message')[0];
 
-form.addEventListener('submit', (event) => {
+    if (name.value.length < 3) {
+        name.setCustomValidity('Name must be at least 3 characters long.');
+    } else {
+        name.setCustomValidity('');
+    }
+
+    if (!email.value.includes('@')) {
+        email.setCustomValidity('Please enter a valid email address.');
+    } else {
+        email.setCustomValidity('');
+    }
+
+    if (message.value.length < 10) {
+        message.setCustomValidity('Message must be at least 10 characters long.');
+    } else {
+        message.setCustomValidity('');
+    }
+});
+
+document.getElementById('contactForm').addEventListener('submit',function(event) {
     event.preventDefault();
-    loadingSpinner.style.display = 'block';
-    const formData = new FormData(form);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
+    const formFeedback = document.getElementById('formFeedback');
+    const loadingSpinner = document.getElementById('loadingSpinner');
 
-    if (name && email && message) {
-        // Mock form submission
-        setTimeout(() => {
-            form.reset();
-            loadingSpinner.style.display = 'none';
+    loadingSpinner.style.display = 'block';
+
+    setTimeout(() => {
+        loadingSpinner.style.display = 'none';
+
+        const name = document.getElementsByName('name')[0].value;
+        const email = document.getElementsByName('email')[0].value;
+        const message = document.getElementsByName('message')[0].value;
+
+        if (name && email && message) {
             formFeedback.textContent = 'Message sent successfully!';
             formFeedback.style.color = 'green';
-        }, 1000);
-    } else {
-        loadingSpinner.style.display = 'none';
-        formFeedback.textContent = 'Please fill in all fields.';
-        formFeedback.style.color = 'red';
-    }
+        } else {
+            formFeedback.textContent = 'Please fill out all fields correctly.';
+            formFeedback.style.color = 'red';
+        }
+    }, 1000)
 });

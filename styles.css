@@ -15,6 +15,18 @@ body {
     position: relative;
 }
 
+@keyframes backgroundScroll {
+    0% {
+        background-position: center top;
+    }
+    50% {
+        background-position: center bottom;
+    }
+    100% {
+        background-position: center top;
+    }
+}
+
 .dark-mode {
     background-color: #121212;
     color: #fafafa;
@@ -235,18 +247,6 @@ footer {
     }
     100% {
         transform: rotate(360deg);
-    }
-}
-
-@keyframes backgroundScroll {
-    0% {
-        background-position: center top;
-    }
-    50% {
-        background-position: center bottom;
-    }
-    100% {
-        background-position: center top;
     }
 }
 
